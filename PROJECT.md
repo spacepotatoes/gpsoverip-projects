@@ -95,12 +95,37 @@ bestätigt): Black, Bold, Bold Italic, Semi Bold.
   damit funktionieren `use_figma`/Screenshot-Tools wieder normal.
 - Voraussetzung für Figma-Schreibzugriff in einer neuen Claude-Code-Session:
   einmaliger OAuth-Login für den `figma-remote-mcp` Server (Browser-Login mit
-  demselben Figma-Account). Details zur Diagnose falls Tools fehlen: siehe
-  Memory-Datei `reference_figma_use_figma.md` im Hauptprojekt (zeitgeist_v01),
-  liegt lokal unter
-  `C:\Users\Giusi_PC\.claude\projects\c--Users-Giusi-PC-Documents-claudeProjekte-zeitgeist-v01\memory\`
-  — dieser Ordner ist **nicht** Teil eines Git-Repos und daher an diesem PC
-  gebunden.
+  demselben Figma-Account `gt-foto@gmx.de`).
+
+### Setup am Arbeits-PC (falls Claude Code dort noch keinen Figma-Zugriff hat)
+
+1. Server registrieren (einmalig, Terminal):
+   ```
+   claude mcp add --transport http figma-remote-mcp https://mcp.figma.com/mcp --scope user
+   ```
+2. In `C:\Users\<User>\.claude\settings.json` sicherstellen, dass das Plugin
+   aktiviert ist:
+   ```json
+   "enabledPlugins": {
+     "figma@claude-plugins-official": true
+   }
+   ```
+   (meist automatisch vorhanden, wenn nicht: manuell ergänzen)
+3. Claude Code neu starten → OAuth-Login-Dialog erscheint im Browser → mit
+   `gt-foto@gmx.de` einloggen.
+4. Prüfen mit `claude mcp list` — `figma-remote-mcp` sollte "✓ Connected" zeigen.
+
+Bei Problemen (Tools fehlen trotz Verbindung, Token abgelaufen etc.): das ist
+am Hauptrechner schon mal vorgekommen, ausführliche Diagnose-Schritte liegen
+dort in der lokalen Memory-Datei `reference_figma_use_figma.md` — die ist
+PC-gebunden und nicht hier im Repo, im Zweifel einfach neu fragen.
+
+### Photoshop-MCP-Server am Arbeits-PC (optional, nur falls dort benötigt)
+
+Nicht eingerichtet und nicht Teil dieses Repos — siehe Abschnitt weiter unten
+("Photoshop-MCP-Server"). Falls am Arbeits-PC auch Photoshop-Automatisierung
+gewünscht ist, müssten die dortigen Schritte (pip install, `claude mcp add`,
+Photoshop-Installation) separat wiederholt werden.
 
 ## Dieses Projekt / Repo
 
