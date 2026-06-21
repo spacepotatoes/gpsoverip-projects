@@ -133,9 +133,33 @@ diese Datei (und ggf. Nachfragen an den Nutzer) wieder einlesen.
 
 ## Nächste Schritte
 
-1. GitHub-Repo `gpsauge-mi6` (privat) anlegen, Remote setzen, pushen.
+1. ~~GitHub-Repo anlegen, Remote setzen, pushen.~~ Erledigt — Remote ist
+   `https://github.com/spacepotatoes/gpsoverip-projects.git` (Branch `master`).
 2. Am Arbeits-PC: Repo klonen, Claude Code starten, Figma-OAuth einmalig
    bestätigen, diese Datei lesen lassen.
 3. Echte freigestellte Fotos (Hintergrund LKW + GPSauge MI6 PRO Geräte) in
-   die Platzhalter-Frames in Figma einsetzen.
+   die Platzhalter-Frames in Figma einsetzen — dafür ggf. den neu
+   eingerichteten Photoshop-MCP-Server nutzen (siehe unten).
 4. Bei Bedarf: Farben/Schrift/Abstände gegen das Original feinjustieren.
+
+## Photoshop-MCP-Server (21.06.2026 eingerichtet)
+
+- Installiert via `pip install --user photoshop-mcp-server` (Paket
+  `photoshop-mcp-server` 0.1.11, nutzt `photoshop-python-api` per COM gegen
+  eine lokal laufende Adobe-Photoshop-Installation — kein eigenes Rendering).
+- Ausführbar unter
+  `C:\Users\Giusi_PC\AppData\Roaming\Python\Python312\Scripts\photoshop-mcp-server.exe`
+  (nicht im PATH, daher voller Pfad nötig).
+- Bei Claude Code registriert: `claude mcp add --scope user photoshop -- "<obiger Pfad>"`
+  → Scope `user`, d.h. in **jedem** Projekt auf diesem PC verfügbar, nicht nur hier.
+  Eintrag liegt in `C:\Users\Giusi_PC\.claude.json`.
+- Voraussetzung zur Nutzung: Adobe Photoshop 2026 ist auf diesem PC
+  installiert (bestätigt) und muss beim Tool-Aufruf **geöffnet** sein.
+- Gedacht für: die fehlenden Freisteller (Hintergrundfoto LKW-Flotte,
+  Produktfoto GPSauge MI6 PRO) direkt aus Rohbildern in Photoshop
+  zuzuschneiden/freizustellen und dann in die Figma-Platzhalter
+  (`2:3`/`2:11`) einzusetzen.
+- Achtung: dieses Setup ist **lokal an diesen PC gebunden** (Pfad zur exe,
+  `.claude.json`-Eintrag, installiertes Photoshop). Am Arbeits-PC müsste der
+  Server bei Bedarf separat installiert/registriert werden — diese Notiz
+  beschreibt nur, dass und wie es hier gemacht wurde.
