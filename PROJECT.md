@@ -130,19 +130,17 @@ Photoshop-Installation) separat wiederholt werden.
 ## Dieses Projekt / Repo
 
 - Lokaler Ordner: `C:\Users\Giusi_PC\Documents\claudeProjekte\gpsauge-mi6\`
-- Soll als **privates** GitHub-Repo unter dem persönlichen Account des Nutzers
-  angelegt werden (gleiches Account-Muster wie `zeitgeist_v01`, dort
-  `origin = https://github.com/spacepotatoes/zeitgeist.git`) — vermuteter
-  Ziel-Name: `spacepotatoes/gpsauge-mi6`, **noch nicht bestätigt/erstellt**.
+- GitHub-Repo: **privat**, `https://github.com/spacepotatoes/gpsoverip-projects.git`
+  (Branch `master`) — Name bewusst `gpsoverip-projects` (nicht `gpsauge-mi6`),
+  vom Nutzer ausdrücklich bestätigt; vermutlich als Sammel-Repo für weitere
+  GPSoverIP-Kundenprojekte gedacht, nicht nur dieses eine Layout.
 - Grund für eigenes Repo statt im zeitgeist_v01-Repo: inhaltlich völlig
   anderes Thema (Fuhrpark-/Telematik-Kunde, nicht Webdesign/Fotografie von
   zeitgeist).
-- GitHub-CLI (`gh`) ist auf diesem PC **nicht installiert** — Repo muss
-  manuell auf github.com angelegt werden (leer, ohne README/.gitignore),
-  danach `git remote add origin <url> && git push -u origin master`.
-- Stand: lokales Git-Repo ist initialisiert, ein Commit vorhanden
-  ("docs: Projekt-Kontext für GPSauge MI6 Figma-Layout angelegt"), noch
-  **kein Remote verbunden, noch nicht gepusht**.
+- GitHub-CLI (`gh`) ist auf diesem PC **nicht installiert** — das Repo wurde
+  manuell auf github.com angelegt, danach hier per
+  `git remote add origin ... && git push -u origin master` verbunden.
+- Stand: verbunden und gepusht, lokaler und Remote-Branch `master` sind sync.
 
 ## Warum dieses Setup (Hintergrund der Entscheidung)
 
@@ -188,3 +186,40 @@ diese Datei (und ggf. Nachfragen an den Nutzer) wieder einlesen.
   `.claude.json`-Eintrag, installiertes Photoshop). Am Arbeits-PC müsste der
   Server bei Bedarf separat installiert/registriert werden — diese Notiz
   beschreibt nur, dass und wie es hier gemacht wurde.
+
+## Session-Verlauf (21.06.2026, chronologisch)
+
+1. Figma-Layout fertig gebaut (siehe oben), Screenshot geprüft.
+2. Nutzer wollte vom Arbeits-PC weiterarbeiten können → Klärung: Chat-Verlauf
+   und Memory sind PC-gebunden, Figma ist Cloud (kein Setup nötig außer
+   Login), für den Rest wird dieses Repo + `PROJECT.md` als Wissensträger
+   angelegt.
+3. Lokalen Ordner `gpsauge-mi6` angelegt, `git init`, `PROJECT.md` geschrieben
+   und committet.
+4. Nutzer hat das GitHub-Repo manuell angelegt und den Remote-Befehl
+   `git remote add origin https://github.com/spacepotatoes/gpsoverip-projects.git`
+   geschickt — Name weicht vom ursprünglich besprochenen `gpsauge-mi6` ab;
+   auf Nachfrage vom Nutzer **ausdrücklich bestätigt**, dass
+   `gpsoverip-projects` der richtige/gewollte Name ist.
+5. Remote verbunden, gepusht (`master`).
+6. Nutzer fragte, ob für dieses Mini-Projekt eine `.env`/Config nötig ist →
+   Antwort: nein, kein Code/Backend/Secrets vorhanden, erst relevant falls
+   später echter Code mit API-Keys entsteht (dann sofort `.gitignore`, analog
+   zu `public/api/config.php` im Hauptprojekt zeitgeist_v01).
+7. Nutzer wollte `pip install photoshop-mcp-server`. Erster Versuch ins
+   globale `C:\Python312` schlug fehl (`wheel.exe` gesperrt/Berechtigung,
+   `WinError 2`). Erfolgreich mit `pip install --user photoshop-mcp-server`.
+   Danach per `claude mcp add --scope user photoshop -- "<exe-Pfad>"`
+   registriert, Verbindung mit `claude mcp list` als "✓ Connected" bestätigt,
+   installiertes Adobe Photoshop 2026 auf diesem PC per Registry-Check
+   verifiziert. Hinweis an Nutzer: Tools erst nach Session-Neustart + bei
+   geöffnetem Photoshop nutzbar.
+8. Nutzer fragte gezielt, ob der Befehl zur Figma-Installation für den
+   Arbeits-PC in `PROJECT.md` steht — war bis dahin nur indirekt über einen
+   Verweis auf eine PC-gebundene Memory-Datei vorhanden. Daraufhin den
+   konkreten Befehl (`claude mcp add --transport http figma-remote-mcp
+   https://mcp.figma.com/mcp --scope user`) plus Folgeschritte direkt in
+   diese Datei aufgenommen (siehe Abschnitt "Setup am Arbeits-PC" oben).
+9. Dieser Log-Abschnitt selbst wurde auf Wunsch des Nutzers ergänzt, damit
+   der Gesprächsverlauf/die Entscheidungen auch ohne Zugriff auf den
+   Original-Chat nachvollziehbar bleiben.
